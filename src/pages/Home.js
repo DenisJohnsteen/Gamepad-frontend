@@ -25,7 +25,20 @@ const Home = () => {
       }
     };
     fetchData();
-  }, [page]);
+  }, [page, sortValue]);
+
+  const handleSort = async (event) => {
+    let value = event.target.value;
+    setSortValue(value);
+    return await axios
+      .get(
+        `https://api.rawg.io/api/games?key=2092a1dbb9c246d3871f108928ae56fa?ordering=${value}`
+      )
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => console.log(error));
+  };
 
   return isLoading ? (
     <p>en cour de chargement...</p>
@@ -70,7 +83,15 @@ const Home = () => {
           );
         })}
       </div>
-
+      <h5> Sort By:</h5>
+      <select onChange={handleSort} value={sortValue}>
+        <option>Please Select Value</option>
+        {sortOptions.map((item, index) => (
+          <option value={item} key={index}>
+            {item}
+          </option>
+        ))}
+      </select>
       <center>
         <button
           onClick={() => {
