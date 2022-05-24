@@ -32,7 +32,7 @@ const Home = () => {
     setSortValue(value);
     return await axios
       .get(
-        `https://api.rawg.io/api/games?key=2092a1dbb9c246d3871f108928ae56fa?ordering=${value}`
+        `https://api.rawg.io/api/games?key=2092a1dbb9c246d3871f108928ae56fa&ordering=${value}`
       )
       .then((response) => {
         setData(response.data);
