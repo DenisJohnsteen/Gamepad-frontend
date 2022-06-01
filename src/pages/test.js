@@ -52,38 +52,11 @@ const Home = () => {
       .catch((error) => console.log(error));
   };
 
-  const handlePlatform = async (event) => {
-    let value = event.target.value;
-    setPlatform(value);
+  const handleFilter = async (event) => {
+    event.preventDefault();
     return await axios
       .get(
-        `https://api.rawg.io/api/games?key=2092a1dbb9c246d3871f108928ae56fa&platforms=${value}`
-      )
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => console.log(error));
-  };
-
-  const handleType = async (event) => {
-    let value = event.target.value;
-    setType(value);
-    return await axios
-      .get(
-        `https://api.rawg.io/api/games?key=2092a1dbb9c246d3871f108928ae56fa&genres=${value}`
-      )
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => console.log(error));
-  };
-
-  const handleSort = async (event) => {
-    let value = event.target.value;
-    setSortValue(value);
-    return await axios
-      .get(
-        `https://api.rawg.io/api/games?key=2092a1dbb9c246d3871f108928ae56fa&ordering=${value}`
+        `https://api.rawg.io/api/games?key=2092a1dbb9c246d3871f108928ae56fa&platforms=${platform}&genres=${type}&${sortValue}`
       )
       .then((response) => {
         setData(response.data);
@@ -127,46 +100,65 @@ const Home = () => {
       <h1 className="mostRelevanceGame">Most Relevance Games</h1>
       <main>
         <div className="container-filter">
-          <div className="filter-left">
-            <div className="container-platform">
-              <span> Platform:</span>
-              <select onChange={handlePlatform} value={platform}>
-                <option>All</option>
-                {gamePlatform.map((item, index) => (
-                  <option value={item} key={index}>
-                    {item}
-                  </option>
-                ))}
-              </select>
+          <form onSubmit={handleFilter}>
+            <div className="filter-left">
+              <div className="container-platform">
+                <span> Platform:</span>
+
+                <select
+                  onChange={(event) => {
+                    setPlatform(event.target.value);
+                  }}
+                  value={platform}
+                >
+                  <option>All</option>
+                  {gamePlatform.map((item, index) => (
+                    <option value={item} key={index}>
+                      {item}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="container-type">
+                <span> Type:</span>
+                <select
+                  onChange={(event) => {
+                    setType(event.target.value);
+                  }}
+                  value={type}
+                >
+                  <option>All</option>
+                  {gameType.map((item, index) => (
+                    <option value={item} key={index}>
+                      {item}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
 
-            <div className="container-type">
-              <span> Type:</span>
-              <select onChange={handleType} value={type}>
-                <option>All</option>
-                {gameType.map((item, index) => (
-                  <option value={item} key={index}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
+            <div className="filter-right">
+              <div className="container-sort">
+                <span> Sort By:</span>
+                <select
+                  onChange={(event) => {
+                    setSortValue(event.target.value);
+                  }}
+                  value={sortValue}
+                >
+                  <option>Default</option>
+                  {sortOptions.map((item, index) => (
+                    <option value={item} key={index}>
+                      {item}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-          <div className="filter-right">
-            <div className="container-sort">
-              <span> Sort By:</span>
-              <select onChange={handleSort} value={sortValue}>
-                <option>Default</option>
-                {sortOptions.map((item, index) => (
-                  <option value={item} key={index}>
-                    {item}
-                  </option>
-                ))}
-              </select>
+              <button>FILTER</button>
             </div>
-            <button>FILTER</button>
-          </div>
+          </form>
         </div>
 
         <div className="container-game-title">

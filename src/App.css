@@ -6,10 +6,19 @@ body {
   background-color: #171719;
 }
 
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-color: blue; */
+}
+
 h1,
 h2 {
   color: white;
 }
+
+/* HEADER */
 
 .header-container {
   display: flex;
@@ -22,7 +31,12 @@ h2 {
 .logo {
   height: 75px;
   width: 75px;
+  border-radius: 20%;
   object-fit: cover;
+}
+
+.logo-title {
+  border-radius: 20%;
 }
 
 .header-container h1 {
@@ -36,6 +50,33 @@ h2 {
 .header-right {
   display: flex;
   align-items: center;
+}
+
+.header-left {
+  margin-left: 50px;
+}
+
+.header-right {
+  margin-right: 50px;
+}
+
+.signup-join button {
+  color: white;
+  border: none;
+  background-color: #171719;
+  font-size: 25px;
+}
+
+.myCollection {
+  background-color: #171719;
+  color: white;
+  border: none;
+  font-size: 25px;
+  margin-right: 20px;
+}
+
+.header-container button:hover {
+  color: red;
 }
 
 /* Home */
@@ -75,10 +116,15 @@ h2 {
 .searchBox i {
   background-color: lightgray;
   height: 60px;
-  padding-top: 9px;
+  padding-top: 8.5px;
   color: grey;
   border-radius: 0px 5px 5px 0px;
   padding-left: 7px;
+}
+
+.search-result {
+  color: lightgray;
+  font-size: 40px;
 }
 
 .count {
@@ -87,10 +133,94 @@ h2 {
   font-weight: 400;
 }
 
+.mostRelevanceGame {
+  margin-left: 8%;
+  margin-top: 70px;
+  font-weight: 500;
+}
+
+.container-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 84%;
+}
+
+.filter-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* background-color: red; */
+}
+
+.filter-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  /* width: 15%; */
+  /* background-color: red; */
+}
+
+.filter-right button {
+  border: none;
+  background-color: #f92424;
+  height: 30px;
+  color: lightgray;
+  border-radius: 5px;
+}
+
+.container-filter span {
+  color: lightgray;
+  font-size: 15px;
+}
+.container-type {
+  display: flex;
+  display: flex;
+  background-color: #3f3f41;
+  align-items: center;
+  height: 30px;
+  /* width: 120px; */
+  border-radius: 5px;
+  margin-left: 15px;
+}
+
+.container-platform {
+  display: flex;
+  background-color: #3f3f41;
+  align-items: center;
+  height: 30px;
+  /* width: 120px; */
+  border-radius: 5px;
+}
+
+select {
+  margin-left: 10px;
+  border: none;
+  background-color: #3f3f41;
+  color: lightgray;
+  padding-top: 3px;
+}
+
+option {
+  color: lightgray;
+}
+
+.container-sort {
+  display: flex;
+  background-color: #3f3f41;
+  align-items: center;
+  height: 30px;
+  /* width: 150px; */
+  border-radius: 5px;
+  margin-right: 15px;
+}
+
 .container-game-title {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  width: 90%;
+  /* background-color: red; */
 }
 
 .container-game-img:hover {
@@ -98,12 +228,6 @@ h2 {
   transition: transform 0.2s;
   max-width: 100%;
   z-index: 999999;
-}
-
-.mostRelevanceGame {
-  margin-left: 6%;
-  margin-top: 70px;
-  font-weight: 500;
 }
 
 .game-image {
@@ -125,4 +249,222 @@ h2 {
   margin-left: 10px;
   color: lightgray;
   white-space: normal;
+}
+
+/*  SIGNUP  */
+
+.container-form-signup {
+  /* background-color: #f92424; */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-column-left {
+  width: 30%;
+  background: linear-gradient(#3f3f41, black);
+  height: 60vh;
+  border-right: 2px solid #f92424;
+  border-radius: 10px 0px 0px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.signup-column-right {
+  width: 30%;
+  background: linear-gradient(black, #3f3f41);
+  height: 60vh;
+  border-radius: 0px 10px 10px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.signup-column-right .username-email input {
+  width: 95%;
+  height: 40px;
+  border: none;
+  margin: 1.5%;
+  border-radius: 5px;
+}
+
+.username-email {
+  /* background-color: red; */
+  width: 85%;
+}
+
+.password {
+  width: 85%;
+  /* background-color: blue; */
+}
+
+.signup-column-right .password input {
+  width: 46%;
+  height: 40px;
+  border: none;
+  margin: 1.5%;
+  border-radius: 5px;
+}
+
+.signup-column-right span,
+.signup-column-right p {
+  color: white;
+  width: 80%;
+}
+
+.signup-column-right button {
+  width: 82%;
+  border: none;
+  height: 40px;
+  border-radius: 5px;
+  color: white;
+  background-color: #f92424;
+  margin-bottom: 20px;
+}
+
+.signup-column-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-column-left .container-inside {
+  /* background-color: blue; */
+  width: 85%;
+  margin-bottom: 40px;
+}
+
+.signup-column-left .user {
+  width: 100%;
+  /* background-color: red; */
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.signup-column-left .user div {
+  margin-left: 15px;
+  color: white;
+  font-size: 18px;
+}
+
+.signup-column-left .collection {
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.signup-column-left .comment {
+  width: 100%;
+  /* background-color: red; */
+}
+
+.signup-column-left span {
+  width: 80%;
+  color: white;
+  margin-left: 15px;
+  font-size: 18px;
+}
+
+/*SIGNIN */
+
+.container-form-signin {
+  /* background-color: #f92424; */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signin-column-left {
+  width: 30%;
+  background: linear-gradient(#3f3f41, black);
+  height: 60vh;
+  border-right: 2px solid #f92424;
+  border-radius: 10px 0px 0px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.signin-column-right {
+  width: 30%;
+  background: linear-gradient(black, #3f3f41);
+  height: 60vh;
+  border-radius: 0px 10px 10px 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.signin-column-right .username-password input {
+  width: 95%;
+  height: 40px;
+  border: none;
+  margin: 1.5%;
+  border-radius: 5px;
+}
+
+.username-password {
+  /* background-color: red; */
+  width: 85%;
+}
+
+.signin-column-right span,
+.signin-column-right p {
+  color: white;
+  width: 80%;
+}
+
+.signin-column-right button {
+  width: 81%;
+  border: none;
+  height: 40px;
+  border-radius: 5px;
+  color: white;
+  background-color: #f92424;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.signin-column-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signin-column-left .container-inside {
+  /* background-color: blue; */
+  width: 85%;
+  margin-bottom: 40px;
+}
+
+.signin-column-left .user {
+  width: 100%;
+  /* background-color: red; */
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.signin-column-left .user div {
+  margin-left: 15px;
+  color: white;
+  font-size: 18px;
+}
+
+.signin-column-left .collection {
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.signin-column-left .comment {
+  width: 100%;
+  /* background-color: red; */
+}
+
+.signin-column-left span {
+  width: 80%;
+  color: white;
+  margin-left: 15px;
+  font-size: 18px;
 }
