@@ -5,9 +5,8 @@ import axios from "axios";
 import "./details.css";
 import Modal from "../components/Modal";
 import Review from "../components/Review";
-import Cookies from "js-cookie";
 
-const Details = ({ favorite, setFavorite, handleFavorite }) => {
+const Details = ({ favorite, setFavorite, handleFavorite, token }) => {
   const [data, setData] = useState();
   const [data2, setData2] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -22,7 +21,7 @@ const Details = ({ favorite, setFavorite, handleFavorite }) => {
   const [deleteReview, setDeleteReview] = useState();
 
   const { id } = useParams();
-
+  // console.log(token);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -30,6 +29,7 @@ const Details = ({ favorite, setFavorite, handleFavorite }) => {
           `https://api.rawg.io/api/games/${id}?key=2092a1dbb9c246d3871f108928ae56fa`
         );
         // console.log(response.data);
+
         setData(response.data);
         const response2 = await axios.get(`
         https://api.rawg.io/api/games/${id}/game-series?key=2092a1dbb9c246d3871f108928ae56fa`);
@@ -50,16 +50,24 @@ const Details = ({ favorite, setFavorite, handleFavorite }) => {
   // };
 
   const addFavorite = () => {
-    const tab = [...favorite];
-    tab.push(data);
-    handleFavorite(tab);
-    // const tabString = JSON.stringify(tab);
-    // console.log(tabString);
-    // Cookies.set("favorite", tabString);
-    // const returnToTab = JSON.parse(tabString);
-    // console.log(returnToTab);
-    // setFavorite(tab);
-    // console.log(dataFav);
+    console.log("=>", data);
+    if (favorite === null) {
+      const tab = [];
+      tab.push({
+        name: data.name,
+        id: data.id,
+        background_image: data.background_image,
+      });
+      handleFavorite(tab);
+    } else {
+      const tab = [...favorite];
+      tab.push({
+        name: data.name,
+        id: data.id,
+        background_image: data.background_image,
+      });
+      handleFavorite(tab);
+    }
   };
 
   return isLoading ? (
@@ -158,6 +166,7 @@ const Details = ({ favorite, setFavorite, handleFavorite }) => {
           dataUpdate={dataUpdate}
           setNewReview={setNewReview}
           setDataUpdate={setDataUpdate}
+          token={token}
         />
       )}
       <Review

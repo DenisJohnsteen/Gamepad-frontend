@@ -21,7 +21,7 @@ const Review = ({
         const response = await axios.get(
           "http://localhost:4000/getlistofreview"
         );
-        console.log(response.data);
+        // console.log(response.data);
         setDataReview(response.data);
         setIsLoading(false);
       } catch (error) {

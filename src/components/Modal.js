@@ -13,7 +13,9 @@ const Modal = ({
   idReview,
   setDataUpdate,
   setNewReview,
+  token,
 }) => {
+  // console.log(token);
   const handleReviewTitle = (event) => {
     const value = event.target.value;
     setReviewTitle(value);
@@ -27,10 +29,19 @@ const Modal = ({
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:4000/review/create", {
-        reviewTitle: reviewTitle,
-        review: review,
-      });
+      const response = await axios.post(
+        "http://localhost:4000/review/create",
+        {
+          reviewTitle: reviewTitle,
+          review: review,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       console.log(response.data);
       setNewReview(response.data);
       closeModal(false);

@@ -13,13 +13,15 @@ import Details from "./pages/Details";
 import Favorite from "./pages/Favorite";
 
 function App() {
-  const [favorite, setFavorite] = useState([Cookies.get("favorite")]);
+  const [favorite, setFavorite] = useState(
+    JSON.parse(Cookies.get("favorite") || null)
+  );
   const [token, setToken] = useState(Cookies.get("userToken") || null);
 
   const handleFavorite = (tab) => {
     const tabString = JSON.stringify(tab);
     Cookies.set("favorite", tabString);
-    // setFavorite(tab);
+    setFavorite(tab);
   };
 
   const handleToken = (token) => {
@@ -43,6 +45,7 @@ function App() {
               favorite={favorite}
               setFavorite={setFavorite}
               handleFavorite={handleFavorite}
+              token={token}
             />
           }
         />
@@ -50,7 +53,13 @@ function App() {
         <Route path="/signup" element={<Signup handleToken={handleToken} />} />
         <Route
           path="/collection"
-          element={<Favorite favorite={favorite} setFavorite={setFavorite} />}
+          element={
+            <Favorite
+              favorite={favorite}
+              setFavorite={setFavorite}
+              handleFavorite={handleFavorite}
+            />
+          }
         />
       </Routes>
     </Router>
